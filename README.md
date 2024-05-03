@@ -1,14 +1,14 @@
 # class-mirror
-The @quick-toolkit/class-mirror is typescript metadata decorator framework.
+The @geckoai/class-mirror is typescript metadata decorator framework.
 
-[![npm (scoped)](https://img.shields.io/npm/v/@quick-toolkit/class-mirror)](https://www.npmjs.com/package/@quick-toolkit/class-mirror)
+[![npm (scoped)](https://img.shields.io/npm/v/@geckoai/class-mirror)](https://www.npmjs.com/package/@geckoai/class-mirror)
 
 ## Installing
 
 ```shell
-npm i reflect-metadata @quick-toolkit/class-mirror
+npm i reflect-metadata @geckoai/class-mirror
 #or
-yarn add reflect-metadata @quick-toolkit/class-mirror
+yarn add reflect-metadata @geckoai/class-mirror
 ```
 
 ## Example Usage
@@ -37,7 +37,7 @@ export interface EntityMetadataOption {
 Create decorator file.
 ```ts
 // import mirror
-import { ClassMirror } from '@quick-toolkit/class-mirror';
+import { ClassMirror } from '@geckoai/class-mirror';
 // import entity-metadata.ts
 import { EntityMetadata } from './entity-metadata';
 
@@ -87,7 +87,7 @@ console.log(reflect2.metadata) // Set<EntityMetadata>
 Create custom metadata file or use `PropertyMetadata`, custom metadata must use the `PropertyMetadata` extension.
 `exclude-metadata.ts`
 ```ts
-import { PropertyMetadata } from '@quick-toolkit/class-mirror';
+import { PropertyMetadata } from '@geckoai/class-mirror';
 
 /**
  * @class ExcludeMetadata
@@ -106,7 +106,7 @@ Create custom property decorator
 use `PropertyMirror.createDecorator` create property decorator.
 ```ts
 import { ExcludeMetadata, ExcludeMetadataOption } from './exclude-metadata';
-import { PropertyMirror } from '@quick-toolkit/class-mirror';
+import { PropertyMirror } from '@geckoai/class-mirror';
 
 // The decorator can be used in two ways.
 export function Exclude(target: Object, propertyKey: string | symbol): void;
@@ -169,7 +169,7 @@ console.log(refect2.getDesignType()) // Number
 Create custom metadata file or use `MethodMetadata`, custom metadata must use the `MethodMetadata` extension.
 `request-metadata.ts`
 ```ts
-import { MethodMetadata } from '@quick-toolkit/class-mirror';
+import { MethodMetadata } from '@geckoai/class-mirror';
 
 /**
  * @class RequestMetadata
@@ -187,7 +187,7 @@ Create custom method decorator
 use `MethodMirror.createDecorator` create method decorator.
 ```ts
 import { RequestMetadata, RequestMetadataOption } from './request-metadata';
-import { MethodMirror } from '@quick-toolkit/class-mirror';
+import { MethodMirror } from '@geckoai/class-mirror';
 
 // Unlike the previous case, the decorator has only one use，but it can also be used in two ways, You must add your own implementation logic.
 export function Request(metadata: RequestMetadataOption): MethodDecorator {
@@ -254,7 +254,7 @@ console.log(refectMethod2.getReturnType()); // Number
 Create custom metadata file or use `ParameterMetadata`, custom metadata must use the `ParameterMetadata` extension.
 `param-metadata.ts`
 ```ts
-import { ParameterMetadata } from '@quick-toolkit/class-mirror';
+import { ParameterMetadata } from '@geckoai/class-mirror';
 
 /**
  * @class ParamMetadata
@@ -271,7 +271,7 @@ Create custom parameter decorator
 use `ParameterMirror.createDecorator` create parameter decorator.
 ```ts
 import { ParamMetadata, ParamMetadataOption } from './param-metadata';
-import { ParameterMirror } from '@quick-toolkit/class-mirror';
+import { ParameterMirror } from '@geckoai/class-mirror';
 
 // The decorator can be used in two ways.
 export function Param(target: Object, propertyKey: string | symbol, parameterIndex: number): void;
@@ -366,13 +366,13 @@ parameterMirror4.getDesignParamType(); // Number
 ```
 
 ## Documentation
-- [ApiDocs](https://quick-toolkit.github.io/class-mirror/)
-- [samples](https://github.com/quick-toolkit/class-mirror/tree/master/sample)
+- [ApiDocs](https://geckoai.github.io/class-mirror/)
+- [samples](https://github.com/geckoai/class-mirror/tree/master/sample)
 
 
 ## Issues
-Create [issues](https://github.com/quick-toolkit/class-mirror/issues) in this repository for anything related to the Class Decorator. When creating issues please search for existing issues to avoid duplicates.
+Create [issues](https://github.com/geckoai/class-mirror/issues) in this repository for anything related to the Class Decorator. When creating issues please search for existing issues to avoid duplicates.
 
 
 ## License
-Licensed under the [MIT](https://github.com/quick-toolkit/class-mirror/blob/master/LICENSE) License.
+Licensed under the [MIT](https://github.com/geckoai/class-mirror/blob/master/LICENSE) License.

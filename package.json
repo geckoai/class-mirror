@@ -1,7 +1,7 @@
 {
-  "name": "@quick-toolkit/class-mirror",
-  "version": "1.0.5",
-  "description": "mirror is typescript decorator framework.",
+  "name": "@geckoai/class-mirror",
+  "version": "1.0.0",
+  "description": "Class mirror is typescript decorator framework.",
   "main": "dist/cjs",
   "types": "dist/types",
   "scripts": {
@@ -15,18 +15,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/quick-toolkit/class-mirror.git"
+    "url": "git+https://github.com/geckoai/class-mirror.git"
   },
   "keywords": [
-    "@quick-toolkit",
-    "@quick-toolkit/class-mirror"
+    "@geckoai",
+    "@geckoai/class-mirror"
   ],
   "author": "RanYunLong<549510622@qq.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/quick-toolkit/class-mirror/issues"
+    "url": "https://github.com/geckoai/class-mirror/issues"
   },
-  "homepage": "https://github.com/quick-toolkit/class-mirror#readme",
+  "homepage": "https://github.com/geckoai/class-mirror#readme",
   "devDependencies": {
     "@babel/core": "^7.16.0",
     "@babel/preset-env": "^7.16.4",
