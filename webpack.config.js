@@ -26,5 +26,8 @@ module.exports = {
       }
     ]
   },
+  externals: {
+    "reflect-metadata": "Reflect"
+  },
   target: ["web", "es5"]
 };

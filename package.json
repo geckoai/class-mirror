@@ -1,6 +1,6 @@
 {
   "name": "@geckoai/class-mirror",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Class mirror is typescript decorator framework.",
   "main": "dist/cjs",
   "types": "dist/types",
