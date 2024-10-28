@@ -90,35 +90,6 @@ export class ClassMirror<
   }
 
   /**
-   * constructor
-   */
-  public constructor() {
-    super();
-    const designParamTypes = this.getDesignParamTypes();
-    if (Array.isArray(designParamTypes)) {
-      designParamTypes.forEach((v, i) => {
-        if (!this.parameters.has(i)) {
-          const parameterMirror = new ParameterMirror();
-          parameterMirror.classMirror = this;
-          parameterMirror.index = i;
-          parameterMirror.target = this.target;
-          parameterMirror.propertyKey = null;
-          const methodMirror = new MethodMirror();
-          methodMirror.classMirror = this;
-          methodMirror.isStatic = false;
-          methodMirror.descriptor = Object.getOwnPropertyDescriptors(
-            this.target
-          );
-          methodMirror.propertyKey = 'constructor';
-          parameterMirror.methodMirror = methodMirror;
-          parameterMirror.methodMirror = null;
-          this.parameters.set(i, parameterMirror);
-        }
-      });
-    }
-  }
-
-  /**
    * 父ClassMirror
    */
   public parent: ClassMirror | null = null;
@@ -128,7 +99,7 @@ export class ClassMirror<
    * 此处的`parameters.size`数量是构造函数使用了`ParameterMirror.createDecorator`创建的装饰的成员数量,
    * 要获取所有参数的数量，请使用方法 `[new ClassMirror].getDesignParamTypes`.
    */
-  private readonly parameters: Map<number, ParameterMirror> = new Map();
+  private parameters: Map<number, ParameterMirror> = new Map();
 
   /**
    * Static members
@@ -175,6 +146,28 @@ export class ClassMirror<
    * 获取参数列表
    */
   public getParameters(): Map<number, ParameterMirror> {
+    if (this.parameters.size === 0) {
+      const designParamTypes = this.getDesignParamTypes();
+      if (Array.isArray(designParamTypes)) {
+        designParamTypes.forEach((_, i) => {
+          const parameterMirror = new ParameterMirror();
+          parameterMirror.classMirror = this;
+          parameterMirror.index = i;
+          parameterMirror.target = this.target;
+          parameterMirror.propertyKey = null;
+
+          const methodMirror = new MethodMirror();
+          methodMirror.classMirror = this;
+          methodMirror.isStatic = false;
+          methodMirror.descriptor = Object.getOwnPropertyDescriptors(
+            this.target
+          );
+          methodMirror.propertyKey = 'constructor';
+          parameterMirror.methodMirror = methodMirror;
+          this.parameters.set(i, parameterMirror);
+        });
+      }
+    }
     return new Map(this.parameters.entries());
   }
 
@@ -185,6 +178,25 @@ export class ClassMirror<
   public getParameter<T extends ParameterDecorate>(
     index: number
   ): ParameterMirror<T> {
+    if (this.parameters.size === 0) {
+      const designParamTypes = this.getDesignParamTypes();
+      if (designParamTypes && designParamTypes[index]) {
+        const parameterMirror = new ParameterMirror();
+        parameterMirror.classMirror = this;
+        parameterMirror.index = index;
+        parameterMirror.target = this.target;
+        parameterMirror.propertyKey = null;
+
+        const methodMirror = new MethodMirror();
+        methodMirror.classMirror = this;
+        methodMirror.isStatic = false;
+        methodMirror.descriptor = Object.getOwnPropertyDescriptors(this.target);
+        methodMirror.propertyKey = 'constructor';
+        parameterMirror.methodMirror = methodMirror;
+        this.parameters.set(index, parameterMirror);
+        return parameterMirror as ParameterMirror<T>;
+      }
+    }
     return this.parameters.get(index) as ParameterMirror<T>;
   }
 
